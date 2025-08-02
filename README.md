@@ -1,6 +1,6 @@
 # 🛡️ sharedlib
 
-Shared authentication and logging library for microservices. Provides JWT validation, structured logging middleware, and common utilities.
+Shared authentication and logging library for microservices. Provides JWT validation, structured logging middleware, and common utilities. (I'm sorry I'm too lazy to write the test/s :((( )
 
 ---
 
