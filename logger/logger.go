@@ -1,4 +1,3 @@
-
 package logger
 
 import (
@@ -19,9 +18,9 @@ var (
 
 const loggerKey = "request_logger"
 
-func InitLogger() {
+func InitLogger(serviceName string, production bool) {
 	// Set log level based on environment
-	if os.Getenv("ENVIRONMENT") == "production" {
+	if production {
 		zerolog.SetGlobalLevel(zerolog.InfoLevel)
 	} else {
 		zerolog.SetGlobalLevel(zerolog.DebugLevel)
@@ -41,13 +40,13 @@ func InitLogger() {
 	// Cloud Run detected → Log only to stdout/stderr with sampling
 	Log = zerolog.New(os.Stdout).With().
 		Timestamp().
-		Str("service", os.Getenv("SERVICE_NAME")).
+		Str("service", serviceName).
 		Logger()
 
 	// Don't sample error logs to ensure all errors are captured
 	ErrorLog = zerolog.New(os.Stderr).With().
 		Timestamp().
-		Str("service", os.Getenv("SERVICE_NAME")).
+		Str("service", serviceName).
 		Logger()
 }
 
